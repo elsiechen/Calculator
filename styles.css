@@ -1,0 +1,50 @@
+html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+*, *::before, *::after{
+    box-sizing: inherit;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 400px;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.display{
+    border: 0.7px solid black;
+    border-radius: 10px;
+    width: 360px;
+    height: 120px;
+    
+}
+
+.first-row, .second-row, .third-row, .fourth-row, .fifth-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-grow: 1;
+    width: 360px;
+    height: 90px;
+}
+
+
+
+
