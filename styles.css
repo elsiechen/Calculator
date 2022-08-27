@@ -32,6 +32,7 @@ h1{
     flex-wrap: wrap;
     gap: 10px;
     background-color: rgba(36, 10, 10, 0.5);
+    box-shadow: 9px 11px #888888;
 }
 
 .display{
