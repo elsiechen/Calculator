@@ -16,6 +16,11 @@ body{
     height: 100vh;
 }
 
+h1{
+    color: rgba(130, 12, 12, 0.8);
+    font-size: 48px;
+}
+
 .container{
     border: 1px solid black;
     border-radius: 20px;
@@ -26,24 +31,73 @@ body{
     padding: 20px;
     flex-wrap: wrap;
     gap: 10px;
+    background-color: rgba(36, 10, 10, 0.5);
 }
 
 .display{
     border: 0.7px solid black;
     border-radius: 10px;
     width: 360px;
-    height: 120px;
-    
+    height: 130px;
+    margin-bottom: 10px;
+    background-color: beige;
+    box-shadow: 8px 8px 8px #888888 inset
 }
 
 .first-row, .second-row, .third-row, .fourth-row, .fifth-row{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    flex-grow: 1;
-    width: 360px;
-    height: 90px;
+    height: 65px;
 }
+
+button{
+    width: 82.5px;
+    font-size: 30px;
+    border-radius: 10px;
+    box-shadow: 5px 8px 5px #888888;
+    background-color: rgba(93, 15, 15, 0.6);
+    color: white;
+}
+button:hover{
+    background-color: rgba(93, 15, 15, 0.8);
+}
+
+.sub-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.digit-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.clear{
+    flex: 2;
+    background-color: rgba(255, 0, 0, 0.7);
+}
+
+.delete{
+    background-color: rgba(255, 0, 0, 0.7);
+}
+
+.clear:hover, .delete:hover{
+    background-color: rgba(255, 0, 0, 0.9);
+}
+
+.equals{
+    background-color: rgb(255, 165, 0, 0.9);
+}
+
+.equals:hover{
+    background-color: rgb(255, 165, 0, 1);
+}
+
 
 
 
