@@ -16,6 +16,11 @@ function display(){
     } 
     // btn is number 
     else if(Number(clickedValue) < 10){
+        let processText = process.textContent;
+        // if last char of processText is '=', remove previous operation
+        if(Number(processText[processText.length - 1]) === '='){
+            process.textContent = '';
+        }
         result.textContent += clickedValue;
         
     }
@@ -32,7 +37,24 @@ function display(){
     }
     // btn is =
     else if(clickedValue === '='){
+        // the equation end with operator
+        if(result.textContent === ''){
+            alert('You can not end an equation with non number character.');
+        }else{
+            process.textContent = process.textContent + result.textContent + '=';
+            let processWithoutEquation = process.textContent.slice(0, -1);
+            console.log({processWithoutEquation});
 
+            //result.textContent = Number(processWithoutEquation);
+
+            // Find indexes of operator
+            let index = [];
+             for(let i=0;i<processWithoutEquation.length;i++){
+                if(isNaN(Number(processWithoutEquation[i]))) index.push(i);
+             }
+            
+
+        }
     }
     // btn is + - * /
     else{
