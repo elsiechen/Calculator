@@ -45,6 +45,7 @@ function display(){
             let processWithoutEquation = process.textContent.slice(0, -1);
             console.log({processWithoutEquation});
             console.log(`length of processWithoutEquation:${processWithoutEquation.length}`);
+
             // Find indexes of operator
             let index = [];
              for(let i=0;i<processWithoutEquation.length;i++){
@@ -54,42 +55,36 @@ function display(){
             console.log(`index length: ${index.length}`);
 
              // separate string into array of number and operators
-             let processArray = [];
-             let number = '';
-             for(let i = 0; i < processWithoutEquation.length; i++){
-                for(let j = 0; j < index.length; j++){
-                    
-                    // find out number in processArray
-                    if(i !== Number(index[j])){                       
-                        number += processWithoutEquation[i];
-                        console.log(`i: ${i}`);
-                    }
-                    // if find out operator, push number and operator into processArray
-                    else if(i === Number(index[j])){
-                        console.log({number});
-                        processArray.push(number);
-                        processArray.push(processWithoutEquation[i]);
-                        number = '';
-                    }
+            let array = []; // can not name processArray, which is a built-in function
+            let number = '';
+            for(let i=0;i<processWithoutEquation.length;i++){
+                // item of index match operator in processWithoutEquation  
+                // find out operator, push number and operator into array                   
+                if(isNaN(Number(processWithoutEquation[i]))){
+                    array.push(`${number}`);
+                    array.push(`${processWithoutEquation[i]}`);
+                    number = '';
+                } else { // find number in array
+                    number += processWithoutEquation[i];
                     // reach last index, push last number
-                    else if(i === processWithoutEquation.length - 1){
-                        processArray.push(number);
+                    if(i === processWithoutEquation.length - 1){
+                        array.push(`${number}`);
                     }
                 }
-             }
-             console.log({processArray});
+            }
+            console.log({array});
 
              // loop through processArray, first of all, find '*' and '/' and operate it, 
              // remove items of the operator, items before and after the operator, 
              // push result into processArray; latter, find '+' and '-', and do the above
-             for(let i = 0; i < processArray.length; i++){
+            for(let i = 0; i < processArray.length; i++){
                 let answer = '';
                 if(processArray[i] === '*') answer = operate(multiply, Number(processArray[i - 1]),Number(processArray[i + 1]));             
                 else if(processArray[i] === '/') answer = operate(divide, Number(processArray[i - 1]),Number(processArray[i + 1]));
                 processArray.splice(i - 1, 3, answer);               
-             }
+            }
 
-             for(let i = 0; i < processArray.length; i++){
+            for(let i = 0; i < processArray.length; i++){
                 let answer = '';
                 if(processArray[i] === '+') answer = operate(add, Number(processArray[i - 1]),Number(processArray[i + 1]));             
                 else if(processArray[i] === '-') answer = operate(subtract, Number(processArray[i - 1]),Number(processArray[i + 1]));
