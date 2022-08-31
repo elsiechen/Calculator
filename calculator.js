@@ -77,21 +77,46 @@ function display(){
              // loop through processArray, first of all, find '*' and '/' and operate it, 
              // remove items of the operator, items before and after the operator, 
              // push result into processArray; latter, find '+' and '-', and do the above
-            for(let i = 0; i < processArray.length; i++){
-                let answer = '';
-                if(processArray[i] === '*') answer = operate(multiply, Number(processArray[i - 1]),Number(processArray[i + 1]));             
-                else if(processArray[i] === '/') answer = operate(divide, Number(processArray[i - 1]),Number(processArray[i + 1]));
-                processArray.splice(i - 1, 3, answer);               
-            }
-
-            for(let i = 0; i < processArray.length; i++){
-                let answer = '';
-                if(processArray[i] === '+') answer = operate(add, Number(processArray[i - 1]),Number(processArray[i + 1]));             
-                else if(processArray[i] === '-') answer = operate(subtract, Number(processArray[i - 1]),Number(processArray[i + 1]));
-                processArray.splice(i - 1, 3, answer);               
+             let counter = 0;
+             let iarray = ['12', '+', '5', 'x', '2','x','2'];
+             const length = iarray.length;
+             for(let i = 0; i < length; i++){
+                 let answer = '';
+                 if(iarray[i] === 'x'){
+                     answer += operate(multiply, Number(iarray[i - 1]),Number(iarray[i + 1]));  
+                     iarray.splice(i - 1, 3, answer);    
+                     counter++;       
+                     console.log(iarray[i]);
+                     console.log({answer});   
+                     console.log({iarray});  
+                 }else if(iarray[i] === '/'){
+                     answer += operate(divide, Number(iarray[i - 1]),Number(iarray[i + 1]));
+                     iarray.splice(i - 1, 3, answer);
+                 }else { // if reach number, "jumps over" one iteration in the loop
+                     continue;
+                 };
+                 console.log(iarray.length);
+                       
              }
-             result.textContent = processArray[0];
-             console.log({processArray});
+             console.log({counter});
+            for(let i = 0; i < length; i++){
+                let answer = '';
+                if(iarray[i] === '+'){
+                    answer += operate(add, Number(iarray[i - 1]),Number(iarray[i + 1]));  
+                    iarray.splice(i - 1, 3, answer);           
+                }else if(iarray[i] === '-'){
+                    answer += operate(subtract, Number(iarray[i - 1]),Number(iarray[i + 1]));
+                    iarray.splice(i - 1, 3, answer);
+                }else {
+                    continue;
+                };
+                console.log(iarray[i]);
+                console.log({answer});   
+                console.log({iarray});        
+            }
+             result.textContent = iarray[0];
+             console.log({iarray});
+             console.log(iarray.length);
         }
     }
     // btn is + - * /
