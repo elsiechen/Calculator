@@ -74,49 +74,38 @@ function display(){
             }
             console.log({array});
 
-             // loop through processArray, first of all, find '*' and '/' and operate it, 
+             // loop through array, find '*','/','+','-' and operate it to get answer, 
              // remove items of the operator, items before and after the operator, 
-             // push result into processArray; latter, find '+' and '-', and do the above
-             let counter = 0;
-             let iarray = ['12', '+', '5', 'x', '2','x','2'];
-             const length = iarray.length;
-             for(let i = 0; i < length; i++){
-                 let answer = '';
-                 if(iarray[i] === 'x'){
-                     answer += operate(multiply, Number(iarray[i - 1]),Number(iarray[i + 1]));  
-                     iarray.splice(i - 1, 3, answer);    
-                     counter++;       
-                     console.log(iarray[i]);
-                     console.log({answer});   
-                     console.log({iarray});  
-                 }else if(iarray[i] === '/'){
-                     answer += operate(divide, Number(iarray[i - 1]),Number(iarray[i + 1]));
-                     iarray.splice(i - 1, 3, answer);
-                 }else { // if reach number, "jumps over" one iteration in the loop
-                     continue;
-                 };
-                 console.log(iarray.length);
-                       
-             }
-             console.log({counter});
-            for(let i = 0; i < length; i++){
-                let answer = '';
-                if(iarray[i] === '+'){
-                    answer += operate(add, Number(iarray[i - 1]),Number(iarray[i + 1]));  
-                    iarray.splice(i - 1, 3, answer);           
-                }else if(iarray[i] === '-'){
-                    answer += operate(subtract, Number(iarray[i - 1]),Number(iarray[i + 1]));
-                    iarray.splice(i - 1, 3, answer);
-                }else {
-                    continue;
-                };
-                console.log(iarray[i]);
-                console.log({answer});   
-                console.log({iarray});        
+             // push answer into array; get the final result
+             while(array.includes('x')){
+                let index=array.findIndex(e => e === 'x'); 
+                let answer = ''; 
+                answer += operate(multiply, Number(array[index - 1]), Number(array[index + 1])); 
+                array.splice(index - 1, 3, answer); 
             }
-             result.textContent = iarray[0];
-             console.log({iarray});
-             console.log(iarray.length);
+
+            while(array.includes('/')){
+                let index=array.findIndex(e => e === '/'); 
+                let answer = ''; 
+                answer += operate(divide, Number(array[index - 1]), Number(array[index + 1])); 
+                array.splice(index - 1, 3, answer); 
+            }
+
+            while(array.includes('+')){
+                let index=array.findIndex(e => e === '+'); 
+                let answer = ''; 
+                answer += operate(add, Number(array[index - 1]), Number(array[index + 1])); 
+                array.splice(index - 1, 3, answer);
+            }
+
+            while(array.includes('-')){
+                let index=array.findIndex(e => e === '-'); 
+                let answer = ''; 
+                answer += operate(subtract, Number(array[index - 1]), Number(array[index + 1])); 
+                array.splice(index - 1, 3, answer); 
+            }
+             result.textContent = array[0];
+             console.log({array});
         }
     }
     // btn is + - * /
