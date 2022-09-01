@@ -44,12 +44,16 @@ function display(){
             process.textContent = process.textContent + result.textContent + '=';
             let processWithoutEquation = process.textContent.slice(0, -1);
             console.log({processWithoutEquation});
-            console.log(`length of processWithoutEquation:${processWithoutEquation.length}`);
 
             // Find indexes of operator
             let index = [];
              for(let i=0;i<processWithoutEquation.length;i++){
-                if(isNaN(Number(processWithoutEquation[i]))) index.push(i);
+                //if(isNaN(Number(processWithoutEquation[i]))) index.push(i); this includes decimal point
+                if(processWithoutEquation[i] === 'x' ||
+                   processWithoutEquation[i] === '/' ||
+                   processWithoutEquation[i] === '+' ||
+                   processWithoutEquation[i] === '-' 
+                )index.push(i);
              }
             console.log({index});
             console.log(`index length: ${index.length}`);
@@ -60,7 +64,11 @@ function display(){
             for(let i=0;i<processWithoutEquation.length;i++){
                 // item of index match operator in processWithoutEquation  
                 // find out operator, push number and operator into array                   
-                if(isNaN(Number(processWithoutEquation[i]))){
+                if(processWithoutEquation[i] === 'x' ||
+                   processWithoutEquation[i] === '/' ||
+                   processWithoutEquation[i] === '+' ||
+                   processWithoutEquation[i] === '-'
+                ){
                     array.push(`${number}`);
                     array.push(`${processWithoutEquation[i]}`);
                     number = '';
