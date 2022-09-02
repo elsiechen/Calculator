@@ -39,9 +39,12 @@ function display(){
     }
     // btn is =
     else if(clickedValue === '='){
+        let processText = process.textContent;
         // the equation end with operator
         if(result.textContent === ''){
             alert('You can not end an equation with non number character.');
+        }else if(processText[processText.length - 1] === '='){
+            alert('You have already entered "=".');
         }else{
             process.textContent = process.textContent + result.textContent + '=';
             let processWithoutEquation = process.textContent.slice(0, -1);
