@@ -1,6 +1,7 @@
 let process = document.querySelector('.process');
 let result = document.querySelector('.result');
 let btns = document.querySelectorAll('button');
+let message = document.querySelector('.message');
 
 btns.forEach(btn => {
     btn.addEventListener('click', display);
@@ -31,7 +32,7 @@ function display(){
         let processText = process.textContent;
         let resultText = result.textContent;
         if(resultText[resultText.length -1] === '.'){
-            alert('You already have decimal point.')
+            appear('You already have decimal point.');
         }else if(resultText === ''){
             result.textContent = '0.'
         }else if(processText[processText.length - 1] === '='){
@@ -46,13 +47,13 @@ function display(){
         let processText = process.textContent;
         // the equation end with operator
         if(result.textContent === '' && processText){
-            alert('You can not end an equation with non number character.');
+            appear('You can not end an equation with non number character.');
         }else if(result.textContent === '' && processText === ''){
-            alert('Please enter an equation.');
+            appear('Please enter an equation.');
         }else if(result.textContent && processText === ''){
-            alert('Please enter an operator.');
+            appear('Please enter an operator.');
         }else if(processText[processText.length - 1] === '='){
-            alert('You have already entered "=".');
+            appear('You have already entered "=".');
         }else{
             process.textContent = process.textContent + result.textContent + '=';
             let processWithoutEquation = process.textContent.slice(0, -1);
@@ -138,11 +139,13 @@ function display(){
     else{
         let processText = process.textContent;
         if(result.textContent === ''){
-            alert(`You must enter a number before entering '${clickedValue}'.`);
+            appear(`You must enter a number before entering '${clickedValue}'.`);
         }else if(processText[processText.length - 1] === '='){
-            alert('Please enter a number first to start an equation.');
+            process.textContent = result.textContent + clickedValue;
+            result.textContent = '';
+            //alert('Please enter a number first to start an equation.');
         }else{
-            process.textContent = process.textContent + result.textContent + clickedValue;
+            process.textContent += result.textContent + clickedValue;
             result.textContent = '';
         }
         
@@ -150,6 +153,10 @@ function display(){
     console.log({clickedValue});
 }
 
+setInterval(appear, 10000);
+function appear(text){
+    message.textContent = text;
+}
 
 function add(a,b){
     return a + b;

@@ -16,9 +16,10 @@ body{
     height: 100vh;
 }
 
-h1{
+.message{
     color: rgba(130, 12, 12, 0.8);
-    font-size: 48px;
+    font-size: 26px;
+    margin-top: 50px;
 }
 
 .container{
