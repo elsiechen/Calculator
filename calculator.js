@@ -31,7 +31,7 @@ function display(){
     else if(clickedValue === '.'){
         let processText = process.textContent;
         let resultText = result.textContent;
-        if(resultText[resultText.length -1] === '.'){
+        if(resultText.includes('.')){
             appear('You already have decimal point.');
         }else if(resultText === ''){
             result.textContent = '0.'
