@@ -136,8 +136,11 @@ function display(){
     }
     // btn is + - * /
     else{
+        let processText = process.textContent;
         if(result.textContent === ''){
             alert(`You must enter a number before entering '${clickedValue}'.`);
+        }else if(processText[processText.length - 1] === '='){
+            alert('Please enter a number first to start an equation.');
         }else{
             process.textContent = process.textContent + result.textContent + clickedValue;
             result.textContent = '';
