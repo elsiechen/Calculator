@@ -112,7 +112,7 @@ function display(){
                 answer += operate(subtract, Number(array[index - 1]), Number(array[index + 1])); 
                 array.splice(index - 1, 3, answer); 
             }
-             result.textContent = array[0];
+             result.textContent = Number(array[0]).toFixed(2);
              console.log({array});
         }
     }
