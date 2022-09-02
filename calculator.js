@@ -45,8 +45,12 @@ function display(){
     else if(clickedValue === '='){
         let processText = process.textContent;
         // the equation end with operator
-        if(result.textContent === ''){
+        if(result.textContent === '' && processText){
             alert('You can not end an equation with non number character.');
+        }else if(result.textContent === '' && processText === ''){
+            alert('Please enter an equation');
+        }else if(result.textContent && processText === ''){
+            alert('Please enter an operator.');
         }else if(processText[processText.length - 1] === '='){
             alert('You have already entered "=".');
         }else{
