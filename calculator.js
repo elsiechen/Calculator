@@ -17,12 +17,14 @@ function display(){
     // btn is number 
     else if(Number(clickedValue) < 10){
         let processText = process.textContent;
-        // if last char of processText is '=', remove previous operation
-        if(Number(processText[processText.length - 1]) === '='){
+        console.log({processText});
+        // if last char of processText is '=', remove previous operation, show new number in result
+        if(processText[processText.length - 1] === '='){       
             process.textContent = '';
+            result.textContent = clickedValue;
+        }else{
+            result.textContent += clickedValue;
         }
-        result.textContent += clickedValue;
-        
     }
     // btn is dot
     else if(clickedValue === '.'){
