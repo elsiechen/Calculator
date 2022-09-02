@@ -48,7 +48,7 @@ function display(){
         if(result.textContent === '' && processText){
             alert('You can not end an equation with non number character.');
         }else if(result.textContent === '' && processText === ''){
-            alert('Please enter an equation');
+            alert('Please enter an equation.');
         }else if(result.textContent && processText === ''){
             alert('Please enter an operator.');
         }else if(processText[processText.length - 1] === '='){
@@ -107,6 +107,11 @@ function display(){
 
             while(array.includes('/')){
                 let index=array.findIndex(e => e === '/'); 
+                // warning if user enter '/0'
+                if(array[index + 1] === '0'){
+                    result.textContent = 'Infinity';
+                    return;
+                }
                 let answer = ''; 
                 answer += operate(divide, Number(array[index - 1]), Number(array[index + 1])); 
                 array.splice(index - 1, 3, answer); 
