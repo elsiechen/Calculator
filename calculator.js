@@ -42,6 +42,21 @@ function display(){
             result.textContent += clickedValue;
         }
     }
+    // btn is DEL
+    else if(clickedValue === 'DEL'){
+        let processText = process.textContent;
+        let resultText = result.textContent;
+        if(processText[processText.length - 1] === '='){
+            process.textContent = '';
+            result.textContent = '';
+        }else if(processText === '' && result.textContent){
+            result.textContent = resultText.slice(0, resultText.length-1);
+        }else if(processText && result.textContent === ''){
+            process.textContent = processText.slice(0, processText.length-1);
+        }else{
+            result.textContent = resultText.slice(0, resultText.length-1);
+        }
+    }
     // btn is =
     else if(clickedValue === '='){
         let processText = process.textContent;
