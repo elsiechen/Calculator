@@ -28,11 +28,15 @@ function display(){
     }
     // btn is dot
     else if(clickedValue === '.'){
+        let processText = process.textContent;
         let resultText = result.textContent;
         if(resultText[resultText.length -1] === '.'){
             alert('You already have decimal point.')
         }else if(resultText === ''){
             result.textContent = '0.'
+        }else if(processText[processText.length - 1] === '='){
+            process.textContent = '';
+            result.textContent = '0.';
         }else{
             result.textContent += clickedValue;
         }
