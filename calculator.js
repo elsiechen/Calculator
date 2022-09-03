@@ -168,6 +168,36 @@ function display(){
     console.log({clickedValue});
 }
 
+document.addEventListener('keydown', event => {
+    console.log(`event.key: ${event.key}`);
+    let operator = {
+        '+':'add',
+        '-':'subtract',
+        '*':'multiply',
+        'x':'multiply',
+        '/':'divide',
+    }
+
+    if(['+','-','*','x','/'].includes(event.key)){
+        document.querySelector(`#${operator[event.key]}`).click();
+    }
+    if(Number(event.key) < 10){
+        document.querySelector(`#digit-${event.key}`).click();
+    }
+    if(event.key === 'Backspace' || event.key === 'Delete'){
+        document.querySelector('#delete').click();
+    }
+    if(event.key === '.'){
+        document.querySelector('#decimal').click();
+    }
+    if(event.key === 'c'){
+        document.querySelector('#clear').click();
+    }
+    if(event.key === '=' || event.key === 'Enter'){
+        document.querySelector('#equals').click();
+    }
+});
+
 setInterval(appear, 10000);
 function appear(text){
     message.textContent = text;
